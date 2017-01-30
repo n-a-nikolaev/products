@@ -1,5 +1,7 @@
+import { AppConfig } from '../app.config';
+
 export class GroupService {
-    private url: string = 'http://products-api/groups';
+    private url: string = `${AppConfig.apiUrl}/groups`;
 
     /**
      * @name getAll

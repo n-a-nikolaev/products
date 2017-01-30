@@ -1,9 +1,9 @@
 import { IProduct } from '../interfaces/product.interface';
 import { SearchData } from '../interfaces/search-data.interface';
+import { AppConfig } from '../app.config';
 
 export class ProductsService {
-    private url: string = 'http://products-api/products';
-
+    private url: string = `${AppConfig.apiUrl}/products`;
 
     /**
      * @name getAll
@@ -17,10 +17,9 @@ export class ProductsService {
         return $.getJSON(`${this.url}`);
     }
 
-
     /**
      * @name getById
-     * @description Get product by id's id
+     * @description Get product by it's id
      * 
      * @param {number} id - id of the product
      * @returns {JQueryPromise<any>}
@@ -30,7 +29,6 @@ export class ProductsService {
     public getById(id: number): JQueryPromise<any> {
         return $.getJSON(`${this.url}/${id}`);
     }
-
 
     /**
      * @name getByGroup
@@ -45,7 +43,6 @@ export class ProductsService {
         return $.getJSON(`${this.url}/group/${id}`);
     }
 
-
     /**
      * @name search
      * @description Search for product by title and/or groupId
@@ -56,7 +53,7 @@ export class ProductsService {
      * @memberOf ProductsService
      */
     public search(data: SearchData): JQueryPromise<any> {
-        return $.getJSON(`${this.url}/search`, data);
+        return $.getJSON(`${AppConfig.apiUrl}/search`, data);
     }
 
     /**
@@ -72,7 +69,6 @@ export class ProductsService {
         return $.post(`${this.url}/add`, data);
     }
 
-
     /**
      * TODO
      * @name delete
@@ -83,6 +79,6 @@ export class ProductsService {
      * @memberOf ProductsService
      */
     public delete(id: number) {
-
+        // ...
     }
 }
